@@ -153,11 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_courses:
-                Intent intent = new Intent(MainActivity.this, AddCourseActivity.class);
-                startActivityForResult(intent, 0);
-                break;
+        if (item.getItemId() == R.id.add_courses) {
+            Intent intent = new Intent(MainActivity.this, AddCourseActivity.class);
+            startActivityForResult(intent, 0);
         }
         return true;
     }
