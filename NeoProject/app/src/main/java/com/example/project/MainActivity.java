@@ -21,4 +21,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
     }
+
+    public void Coach(View view) {
+        startActivity(new Intent(getApplicationContext(), Addschedule.class));
+        finish();
+    }
+
 }

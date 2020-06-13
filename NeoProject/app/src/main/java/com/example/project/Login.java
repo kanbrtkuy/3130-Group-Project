@@ -21,14 +21,21 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
+    String userID;
     EditText mEmail, mPassword;
     Button mLoginBtn;
     TextView mCreateBtn, mForgot;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
+    TextView textView;
 
 
     @Override
@@ -43,25 +50,26 @@ public class Login extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.LoginBtn);
         mCreateBtn = findViewById(R.id.createText);
         mForgot = findViewById(R.id.forgotPassword);
+        textView = findViewById(R.id.report);
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mEmail.getText().toString().trim();
+                final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
-                    mEmail.setError("Email is Required.");
+                    textView.setText("Email is Required.");
                     return;
                 }
 
                 if(TextUtils.isEmpty(password)){
-                    mPassword.setError("Password is Required.");
+                    textView.setText("Password is Required.");
                     return;
                 }
 
                 if(password.length() < 6){
-                    mPassword.setError("Password Must be >= 6 Characters");
+                    textView.setText("Password Must be >= 6 Characters");
                     return;
                 }
 
@@ -73,10 +81,11 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Log in successful", Toast.LENGTH_SHORT).show();
+                            textView.setText("Log in successful");
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(Login.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            textView.setText("Error");
+                            /*Toast.makeText(Login.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();*/
                             progressBar.setVisibility(View.GONE);
                         }
                     }
