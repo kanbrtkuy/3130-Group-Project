@@ -33,6 +33,7 @@ import com.example.neoprojectver2.model.Note;
 import com.example.neoprojectver2.note.AddNote;
 import com.example.neoprojectver2.note.EditNote;
 import com.example.neoprojectver2.note.NoteDetails;
+import com.example.neoprojectver2.note.Reminder;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView nav_view;
     RecyclerView noteLists;
     Adapter adapter;
-    FirebaseFirestore fStore;
     FirestoreRecyclerAdapter<Note, NoteViewHolder> noteAdapter;
+    FirebaseFirestore fStore;
     FirebaseUser user;
     FirebaseAuth fAuth;
 
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = fAuth.getCurrentUser();
 
 
-        Query query = fStore.collection("schedule").document(user.getUid()).collection("mySchedule").orderBy("title", Query.Direction.DESCENDING);
+        Query query = fStore.collection("schedule").document(user.getUid()).
+                collection("mySchedule").orderBy("title", Query.Direction.DESCENDING);
         //query schedule >> uid >> myschedule
 
 
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         menu.getMenu().add("Reminder").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
+                                final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
                                 Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
                                 return false;
                             }
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(v.getContext(), Reminder.class);
+                                i.putExtra("scheduleId", docId);
+                                startActivity(i);
                                 return false;
                             }
                         });
