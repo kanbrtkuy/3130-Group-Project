@@ -25,7 +25,8 @@
                 android:backgroundTint="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@android:string/untitled"
+                android:hint="YYYY/MM/DD/Training Name"
+                android:textAlignment="center"
                 android:textColor="#fff"
                 android:textColorHint="#FFFFFF"
                 android:textStyle="bold" />
