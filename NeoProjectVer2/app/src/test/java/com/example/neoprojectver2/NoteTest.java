@@ -14,7 +14,6 @@ public class NoteTest {
     public void GetTitle() {
         Note n1 = new Note("ShortRun", "i will train this afternoon.");
         assertEquals(n1.getTitle().equals("ShortRun"),true);
-        assertEquals(n1.getTitle().equals("shortrun"),false);
     }
 
     // this is the unit test for get content
@@ -22,8 +21,24 @@ public class NoteTest {
     public void GetContent() {
         Note n1 = new Note("ShortRun", "i will train this afternoon.");
         assertEquals(n1.getContent().equals("i will train this afternoon."),true);
+
+    }
+
+    @Test
+
+    public void InvalidGetTitle() {
+        Note n1 = new Note("ShortRun", "i will train this afternoon.");
+        assertEquals(n1.getTitle().equals("shortrun"),false);
+    }
+
+
+    @Test
+
+    public void InvalidGetContent() {
+        Note n1 = new Note("ShortRun", "i will train this afternoon.");
         assertEquals(n1.getContent().equals("i am lazy"),false);
     }
+
 }
 
 
