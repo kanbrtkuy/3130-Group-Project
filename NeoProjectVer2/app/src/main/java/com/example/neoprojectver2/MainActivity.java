@@ -3,6 +3,7 @@ package com.example.neoprojectver2;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -47,6 +48,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -147,16 +149,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
-                        menu.getMenu().add("Reminder").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        /*menu.getMenu().add("Reminder and alarm").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
                                 Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                                //all version of android
+                                Intent i = new Intent();
+
+                                // mimeType will popup the chooser any  for any implementing application (e.g. the built in calendar or applications such as "Business calendar"
+                                i.setType("vnd.android.cursor.item/event");
+
+                                // the time the event should start in millis. This example uses now as the start time and ends in 1 hour
+                                i.putExtra("beginTime", new Date().getTime());
+                                i.putExtra("endTime", new Date().getTime() + DateUtils.HOUR_IN_MILLIS);
+
+                                // the action
+                                i.setAction(Intent.ACTION_EDIT);
+                                startActivity(i);
                                 return false;
                             }
-                        });
+                        });*/
 
-                        menu.getMenu().add("Alert").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        /*menu.getMenu().add("Alert").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
@@ -165,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 startActivity(i);
                                 return false;
                             }
-                        });
+                        });*/
 
                         menu.show();
 
