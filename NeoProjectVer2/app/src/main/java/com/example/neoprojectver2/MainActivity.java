@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
-                        /*menu.getMenu().add("Reminder and alarm").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        menu.getMenu().add("Reminder and alarm").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 startActivity(i);
                                 return false;
                             }
-                        });*/
+                        });
 
                         /*menu.getMenu().add("Alert").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
