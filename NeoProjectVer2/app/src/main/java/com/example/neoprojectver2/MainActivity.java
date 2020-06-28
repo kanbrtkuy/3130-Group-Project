@@ -34,7 +34,7 @@ import com.example.neoprojectver2.model.Note;
 import com.example.neoprojectver2.note.AddNote;
 import com.example.neoprojectver2.note.EditNote;
 import com.example.neoprojectver2.note.NoteDetails;
-import com.example.neoprojectver2.note.Comment;
+import com.example.neoprojectver2.note.Reminder;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
-                noteViewHolder.noteComment.setText(note.getComment());
                 final int code = getRandomColor();
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code,null));
@@ -172,15 +171,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
-                        menu.getMenu().add("Comment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        /*menu.getMenu().add("Alert").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                Intent i = new Intent(v.getContext(), Comment.class);
+                                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(v.getContext(), Reminder.class);
                                 i.putExtra("scheduleId", docId);
                                 startActivity(i);
                                 return false;
                             }
-                        });
+                        });*/
 
                         menu.show();
 
@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public class NoteViewHolder extends  RecyclerView.ViewHolder {
 
-        TextView noteTitle,noteContent, noteComment;
+        TextView noteTitle,noteContent;
         View view;
         CardView mCardView;
 
@@ -352,7 +352,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             noteTitle = itemView.findViewById(R.id.titles);
             noteContent = itemView.findViewById(R.id.content);
-            noteComment = itemView.findViewById(R.id.comment);
             mCardView = itemView.findViewById(R.id.noteCard);
             view = itemView;
         }
