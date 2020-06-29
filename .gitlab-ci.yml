@@ -30,7 +30,7 @@ lintDebug:
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
     tags:
-    - ugrad.cs.dal.ca
+    - grad
 
 assembleDebug:
   stage: build
@@ -40,14 +40,14 @@ assembleDebug:
     paths:
       - app/build/outputs/
   tags:
-    - ugrad.cs.dal.ca
+    - grad
 
 debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
   tags:
-    - ugrad.cs.dal.ca
+    - grad
     
 unit_tests:
   stage: test
@@ -59,4 +59,4 @@ unit_tests:
     paths:
       - app/build/reports/tests/
   tags:
-    - ugrad.cs.dal.ca
+    - grad
