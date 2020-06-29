@@ -30,7 +30,7 @@ lintDebug:
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
     tags:
-    - grad
+    - dalfcs_docker_autoscal
 
 assembleDebug:
   stage: build
@@ -40,14 +40,14 @@ assembleDebug:
     paths:
       - app/build/outputs/
   tags:
-    - grad
+    - dalfcs_docker_autoscal
 
 debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
   tags:
-    - grad
+    - dalfcs_docker_autoscal
     
 unit_tests:
   stage: test
@@ -59,4 +59,4 @@ unit_tests:
     paths:
       - app/build/reports/tests/
   tags:
-    - grad
+    - dalfcs_docker_autoscal
