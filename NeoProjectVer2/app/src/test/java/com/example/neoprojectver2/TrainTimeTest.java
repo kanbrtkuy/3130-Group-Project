@@ -1,5 +1,7 @@
 package com.example.neoprojectver2;
 
+import com.example.neoprojectver2.model.TrainTime;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
