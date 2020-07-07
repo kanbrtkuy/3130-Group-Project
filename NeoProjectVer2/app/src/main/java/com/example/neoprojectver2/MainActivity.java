@@ -150,30 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
-                        menu.getMenu().add("Reminder and alarm").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
-                                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-                                //all version of android
-                                Intent i = new Intent();
-
-                                // mimeType will popup the chooser any  for any implementing application (e.g. the built in calendar or applications such as "Business calendar"
-                                i.setType("vnd.android.cursor.item/event");
-
-                                // the time the event should start in millis. This example uses now as the start time and ends in 1 hour
-                                i.putExtra("beginTime", new Date().getTime());
-                                i.putExtra("endTime", new Date().getTime() + DateUtils.HOUR_IN_MILLIS);
-
-                                // the action
-                                i.setAction(Intent.ACTION_EDIT);
-                                startActivity(i);
-                                return false;
-                            }
-                        });
-
-
-
                         menu.show();
 
                     }
@@ -271,6 +247,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Comment:
                 startActivity(new Intent(this, AddComment.class));
                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                break;
+
+            case R.id.shareSchedule:
+                //all version of android
+                Intent i = new Intent();
+
+                // mimeType will popup the chooser any  for any implementing application (e.g. the built in calendar or applications such as "Business calendar"
+                i.setType("vnd.android.cursor.item/event");
+
+                // the time the event should start in millis. This example uses now as the start time and ends in 1 hour
+                i.putExtra("beginTime", new Date().getTime());
+                i.putExtra("endTime", new Date().getTime() + DateUtils.HOUR_IN_MILLIS);
+
+                // the action
+                i.setAction(Intent.ACTION_EDIT);
+                startActivity(i);
                 break;
 
 
