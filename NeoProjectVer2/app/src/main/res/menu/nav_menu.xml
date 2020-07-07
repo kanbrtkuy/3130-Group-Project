@@ -18,12 +18,18 @@
         </menu>
     </item>
 
-    <item android:title="Support">
+    <item
+        android:id="@+id/Support"
+        android:title="Support">
         <menu>
             <item
-                android:id="@+id/shareApp"
+                android:id="@+id/shareSchedule"
                 android:icon="@drawable/ic_share_black_24dp"
-                android:title="Share App" />
+                android:title="Share Schedule to Google Calendar" />
+            <item
+                android:id="@+id/Comment"
+                android:icon="@drawable/ic_star_half_black_24dp"
+                android:title="Comment" />
         </menu>
     </item>
 

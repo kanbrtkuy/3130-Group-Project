@@ -30,10 +30,10 @@ public class RegisterTest {
 
         onView(withId(R.id.userName))
                 .perform(click())
-                .perform(typeText("hanwenz"));
+                .perform(typeText("hanwenz1"));
         onView(withId(R.id.userEmail))
                 .perform(click())
-                .perform(typeText("barryindalhousie@gmail.com"));
+                .perform(typeText("barryindalhousie1@gmail.com"));
         onView(withId(R.id.password))
                 .perform(click())
                 .perform(typeText("Dalcsci3130"));

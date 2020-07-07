@@ -32,9 +32,9 @@ import com.example.neoprojectver2.auth.Register;
 import com.example.neoprojectver2.model.Adapter;
 import com.example.neoprojectver2.model.Note;
 import com.example.neoprojectver2.note.AddNote;
+//import com.example.neoprojectver2.note.Comment;
 import com.example.neoprojectver2.note.EditNote;
 import com.example.neoprojectver2.note.NoteDetails;
-import com.example.neoprojectver2.note.Reminder;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -150,6 +150,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
+                        menu.getMenu().add("Reminder and alarm").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
+                                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                                //all version of android
+                                Intent i = new Intent();
+
+                                // mimeType will popup the chooser any  for any implementing application (e.g. the built in calendar or applications such as "Business calendar"
+                                i.setType("vnd.android.cursor.item/event");
+
+                                // the time the event should start in millis. This example uses now as the start time and ends in 1 hour
+                                i.putExtra("beginTime", new Date().getTime());
+                                i.putExtra("endTime", new Date().getTime() + DateUtils.HOUR_IN_MILLIS);
+
+                                // the action
+                                i.setAction(Intent.ACTION_EDIT);
+                                startActivity(i);
+                                return false;
+                            }
+                        });
+
+
+
                         menu.show();
 
                     }
@@ -243,6 +267,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.logout:
                 checkUser();
                 break;
+
+            case R.id.Comment:
+                startActivity(new Intent(this, AddComment.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                break;
+
 
             default:
                 Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
