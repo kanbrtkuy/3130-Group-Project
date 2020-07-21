@@ -31,6 +31,9 @@ public class RegisterTest {
         onView(withId(R.id.userName))
                 .perform(click())
                 .perform(typeText("hanwenz1"));
+        onView(withId(R.id.userType))
+                .perform(click())
+                .perform(typeText("Coach"));
         onView(withId(R.id.userEmail))
                 .perform(click())
                 .perform(typeText("barryindalhousie1@gmail.com"));
