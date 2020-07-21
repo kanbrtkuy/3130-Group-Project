@@ -50,13 +50,13 @@ public class LoginTest {
         onView(withId(R.id.email))
                 .perform(click())
                 .perform(typeText("zhanghw0909@gmail.com"));
-        onView(withId(R.id.userType))
+        onView(withId(R.id.lType))
                 .perform(click())
                 .perform(typeText("Coach"));
         onView(withId(R.id.lPassword))
                 .perform(ViewActions.closeSoftKeyboard())
                 .perform(click())
-                .perform(typeText("Dalcsci3130"));
+                .perform(typeText("Aaa12345"));
         onView(withId(R.id.loginBtn))
                 .perform(ViewActions.closeSoftKeyboard())
                 .perform(click());

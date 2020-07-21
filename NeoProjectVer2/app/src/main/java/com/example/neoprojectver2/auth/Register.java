@@ -27,7 +27,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class Register extends AppCompatActivity {
 
-    EditText rUserName, rUserEmail, rUserPass, rUserConfPass;
+    EditText rUserName, rUserType, rUserEmail, rUserPass, rUserConfPass;
     Button syncAccount;
     TextView loginAct;
     ProgressBar progressBar;
@@ -41,6 +41,7 @@ public class Register extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rUserName = findViewById(R.id.userName);
+        rUserType = findViewById(R.id.userType);
         rUserEmail = findViewById(R.id.userEmail);
         rUserPass = findViewById(R.id.password);
         rUserConfPass = findViewById(R.id.passwordConfirm);
@@ -63,12 +64,19 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
 
                 final String uUserName = rUserName.getText().toString();
+                String uUserType = rUserType.getText().toString();
                 String uUserEmail = rUserEmail.getText().toString();
-                String uUserPass = rUserPass.getText().toString();
-                String uConfPass = rUserConfPass.getText().toString();
+                String uUserPass = rUserPass.getText().toString().trim()+rUserType.getText().toString().trim();
+                String uConfPass = rUserConfPass.getText().toString().trim()+rUserType.getText().toString().trim();
 
-                if(uUserEmail.isEmpty()){
+                if(uUserEmail.isEmpty()) {
                     Toast.makeText(Register.this, "User Email is empty.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (uUserType.isEmpty()) {
+                    Toast.makeText(Register.this, "User Type is empty.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!(uUserType.equals("Coach") || uUserType.equals("Athlete"))) {
+                    Toast.makeText(Register.this, "Invalid input of user type.", Toast.LENGTH_SHORT).show();
                     return;
                 } else if(uUserName.isEmpty()) {
                     Toast.makeText(Register.this, "User Name is empty.", Toast.LENGTH_SHORT).show();

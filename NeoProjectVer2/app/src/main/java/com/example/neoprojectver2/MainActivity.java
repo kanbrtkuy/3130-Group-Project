@@ -2,7 +2,9 @@ package com.example.neoprojectver2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -240,6 +242,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
 
+            case R.id.emergency_call:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:911"));
+                startActivity(intent);
+                break;
+
             case R.id.logout:
                 checkUser();
                 break;
@@ -263,6 +271,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // the action
                 i.setAction(Intent.ACTION_EDIT);
                 startActivity(i);
+                break;
+
+            case R.id.CountdownAlarm:
+                Intent openClockIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
+                //openClockIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(openClockIntent);
                 break;
 
 

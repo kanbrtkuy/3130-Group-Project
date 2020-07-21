@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
-    EditText lEmail,lPassword;
+    EditText lEmail, lType, lPassword;
     Button loginNow;
     TextView forgetPass,createAcc;
     FirebaseAuth fAuth;
@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().setTitle("Login to FireNotes");
 
         lEmail = findViewById(R.id.email);
+        lType = findViewById(R.id.lType);
         lPassword = findViewById(R.id.lPassword);
         loginNow = findViewById(R.id.loginBtn);
 
@@ -58,10 +59,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String mEmail = lEmail.getText().toString();
-                String mPassword = lPassword.getText().toString();
+                String mType = lType.getText().toString();
+                String mPassword = lPassword.getText().toString().trim() + lType.getText().toString().trim();
 
                 if (mEmail.isEmpty()) {
                     Toast.makeText(Login.this, "Email is required.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!(mType.equals("Coach") || mType.equals("Athlete") || !mType.isEmpty())) {
+                    Toast.makeText(Login.this, "Invalid input of user type.", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (mPassword.isEmpty()) {
                     Toast.makeText(Login.this, "Password is required.", Toast.LENGTH_SHORT).show();
@@ -101,8 +106,9 @@ public class Login extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, "Login Failed. " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Login Failed. " /*+ e.getMessage()*/, Toast.LENGTH_SHORT).show();
                         spinner.setVisibility(View.GONE);
+                        finish();
                     }
                 });
 

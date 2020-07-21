@@ -27,9 +27,17 @@
                 android:icon="@drawable/ic_share_black_24dp"
                 android:title="Share Schedule to Google Calendar" />
             <item
+                android:id="@+id/CountdownAlarm"
+                android:icon="@drawable/ic_baseline_access_alarm_24"
+                android:title="Start countdown timer" />
+            <item
                 android:id="@+id/Comment"
                 android:icon="@drawable/ic_star_half_black_24dp"
                 android:title="Comment" />
+            <item
+                android:id="@+id/emergency_call"
+                android:icon="@drawable/ic_baseline_phone_24"
+                android:title="Emergency Call"/>
         </menu>
     </item>
 
