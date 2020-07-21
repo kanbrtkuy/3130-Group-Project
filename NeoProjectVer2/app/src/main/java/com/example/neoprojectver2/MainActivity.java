@@ -152,6 +152,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
+                        menu.getMenu().add("Comment").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Intent i = new Intent(v.getContext(), AddComment.class);
+                                i.putExtra("scheduleId", docId);
+                                startActivity(i);
+                                return false;
+                            }
+                        });
+
                         menu.show();
 
                     }
@@ -243,8 +253,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.emergency_call:
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:911"));
+                String number= "119";
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + number));
+                if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                    break;
+                }
                 startActivity(intent);
                 break;
 

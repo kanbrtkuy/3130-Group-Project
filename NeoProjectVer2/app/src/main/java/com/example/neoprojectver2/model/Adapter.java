@@ -93,10 +93,12 @@ import java.util.Random;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     List<String> titles;
     List<String> content;
+    List<String> comment;
 
-    public Adapter(List<String> title,List<String> content){
+    public Adapter(List<String> title,List<String> content, List<String> comment){
         this.titles = title;
         this.content = content;
+        this.comment = comment;
     }
 
     @NonNull
@@ -110,6 +112,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.noteTitle.setText(titles.get(position));
         holder.noteContent.setText(content.get(position));
+        holder.noteComment.setText(comment.get(position));
         final int code = getRandomColor();
         holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));
 
@@ -151,7 +154,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView noteTitle,noteContent;
+        TextView noteTitle, noteContent, noteComment;
         View view;
         CardView mCardView;
 
@@ -159,6 +162,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             super(itemView);
             noteTitle = itemView.findViewById(R.id.titles);
             noteContent = itemView.findViewById(R.id.content);
+            noteComment = itemView.findViewById(R.id.comment);
             mCardView = itemView.findViewById(R.id.noteCard);
             view = itemView;
         }
