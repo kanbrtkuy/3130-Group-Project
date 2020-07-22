@@ -15,10 +15,6 @@
                 android:id="@+id/sync"
                 android:icon="@drawable/ic_sync_black_24dp"
                 android:title="Sync Schedule" />
-            <item
-                android:id="@+id/emergency_call"
-                android:icon="@drawable/ic_baseline_phone_24"
-                android:title="Emergency Call"/>
         </menu>
     </item>
 
@@ -38,6 +34,10 @@
                 android:id="@+id/Comment"
                 android:icon="@drawable/ic_star_half_black_24dp"
                 android:title="Comment" />
+            <item
+                android:id="@+id/emergency_call"
+                android:icon="@drawable/ic_baseline_phone_24"
+                android:title="Emergency Call"/>
         </menu>
     </item>
 
