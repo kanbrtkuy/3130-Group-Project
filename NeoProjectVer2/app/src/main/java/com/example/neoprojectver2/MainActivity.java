@@ -1,7 +1,9 @@
 package com.example.neoprojectver2;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -24,6 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
+                noteViewHolder.noteComment.setText(note.getComment());
                 final int code = getRandomColor();
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code,null));
@@ -253,12 +257,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.emergency_call:
-                String number= "119";
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + number));
-                if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                    break;
-                }
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:+911"));
                 startActivity(intent);
                 break;
 
@@ -361,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public class NoteViewHolder extends  RecyclerView.ViewHolder {
 
-        TextView noteTitle,noteContent;
+        TextView noteTitle,noteContent, noteComment;
         View view;
         CardView mCardView;
 
@@ -370,6 +370,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             noteTitle = itemView.findViewById(R.id.titles);
             noteContent = itemView.findViewById(R.id.content);
+            noteComment = itemView.findViewById(R.id.comment);
             mCardView = itemView.findViewById(R.id.noteCard);
             view = itemView;
         }
