@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.emergency_call:
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:+911"));
+                intent.setData(Uri.parse("tel:911"));
                 startActivity(intent);
                 break;
 
